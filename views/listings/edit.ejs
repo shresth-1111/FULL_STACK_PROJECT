@@ -1,0 +1,97 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <br/>
+            <h3><u>EDIT LISTING</u></h3>
+            <br/>
+            <form method="POST" action="/listings/<%=listEdit.id%>/edit?_method=PUT" class="needs-validation" novalidate enctype="multipart/form-data">
+                <div>
+                    <label for="Title" class="form-label">Title</label>
+                    <input name="listing[title]" value="<%=listEdit.title%>"  type="text" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Either Empty or Invalid Input.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <br/>
+                </div>
+                <div>
+                    <br/>
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="listing[description]" type="text" class="form-control" required><%=listEdit.description%></textarea>
+                    <div class="invalid-feedback">
+                        Either Empty or Invalid Input.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <br/>
+                </div>
+                <br/>
+                <div class="mb-3">
+                    <p>Original Listing</p>
+                    <img src="<%=listEdit.image.url%>" style="height:300px;width:300px">
+                </div>
+                <div>
+                    <br/>
+                    <label for="image" class="form-label">Upload New Image`</label>
+                    <input name="listing[image]" type="file" class="form-control">
+                    <div class="invalid-feedback">
+                        Either Empty or Invalid Input.
+                    </div> 
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <br/>
+                </div>
+                <div>
+                    <br/>
+                    <label for="price" class="form-label">Price</label>
+                    <input name="listing[price]" value="<%=listEdit.price%>"  type="number" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Either Empty or Invalid Input.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <br/>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div>
+                            <br/>
+                            <label for="location" class="form-label">Location</label>
+                            <input name="listing[location]" value="<%=listEdit.location%>" type="text" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Either Empty or Invalid Input.
+                            </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div>
+                            <br/>
+                            <label for="country" class="form-label">Country</label>
+                            <input name="listing[country]" value="<%=listEdit.country%>"  type="text" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Either Empty or Invalid Input.
+                            </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <button class="btn btn-dark edit-btn">Edit</button>
+            </form>
+            <br/>
+        </div>
+    </div>
+</body>

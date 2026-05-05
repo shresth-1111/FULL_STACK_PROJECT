@@ -1,0 +1,143 @@
+<% layout("/layouts/boilerplate") %>
+    <style>
+
+        #filters{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .filter{
+            text-align: center;
+            margin-right: 2rem;
+            margin-top: 2rem;
+            opacity:0.7;
+        }
+
+        .filter:hover{
+            opacity:1;
+        }
+
+        .tax-info{
+            display:none;
+        }
+
+        .tax-toggle{
+            display: flex;
+            border:1px solid black;
+            border-radius: 1rem;
+            justify-content: center;
+            align-items: center;
+            padding:0.6rem;
+        }
+
+    </style>
+
+    <div id="filters">
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-fire"></i>
+            </div>
+            <p>Trending</p>
+        </div>
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-bed"></i>
+            </div>
+            <p>Rooms</p>
+        </div>
+        <div class="filter">
+            <div>
+               <i class="fa-solid fa-city"></i>
+            </div>
+            <p>Iconic Cities</p>
+        </div>
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-mountain"></i>
+            </div>
+            <p>Mountains</p>
+        </div>
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-tents"></i>
+            </div>
+            <p>Campaings</p>
+        </div>
+        <div class="filter">
+            <div>
+               <i class="fa-solid fa-person-swimming"></i>
+            </div>
+            <p>Swimming Pool</p>
+        </div>
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-cow"></i>
+            </div>
+            <p>Farm</p>
+        </div>
+        <div class="filter">
+            <div>
+                <i class="fa-solid fa-sailboat"></i>
+            </div>
+            <p>Boats</p>
+        </div>
+        <div class="filter">
+            <div>
+               <i class="fa-solid fa-igloo"></i>
+            </div>
+            <p>Dome</p>
+        </div>
+
+        <div class="tax-toggle">
+            <div class="form-check form-check-reverse form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                <label class="form-check-label" for="switchCheckDefault">Display Total After Taxes</label>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+         <%for(let listing of allListings){%>
+            <a href="/listings/<%=listing.id%>" class="listing-link">
+                <div class="card listing-card">
+                    <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title"><%=listing.title%></h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><b><%=listing.title%></b><br/>
+                            <%if (listing.price != null) { %>
+                                ₹ <%= listing.price.toLocaleString("en-IN") %>/night
+                                <i class="tax-info">&nbsp; &nbsp; +18%GST</i>
+                            <% } else { %>
+                                Price not available
+                            <% } %><br/>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        <%}%>
+    </div>
+<!-- allListings = > Array of objects  -->
+
+<!-- Writing code for making tax toggle switch functional using add even listeners. -->
+
+<script>
+    let taxSwitch=document.getElementById("switchCheckDefault")
+    taxSwitch.addEventListener("click",()=>{
+        let taxInfo=document.getElementsByClassName("tax-info");  //This will select element with class tax-info
+        // console.log(taxInfo);    //An array of elements                           //There are total of 30 elements with class tax-info (there is one tax-info with each listing)                 
+        //So we will use loop
+        for(info of taxInfo){
+            if(info.style.display!="inline"){
+                info.style.display="inline";
+            }else{
+                info.style.display="none";
+            }
+        }
+    });
+</script>
