@@ -1,42 +1,82 @@
 <style>
-  .btn-search{
+  .btn-search {
     background-color: #fe424d;
-    color:white;
+    color: white;
     border-radius: 1rem;
-    padding:0 0.6rem 0 0.6rem;
+    padding: 0.4rem 0.6rem;
+    white-space: nowrap; /* Prevent button text from wrapping */
   }
 
-  .btn-search i{
+  .btn-search i {
     display: inline;
     margin-right: 0.4rem;
   }
+
+  /* Hide search icon text on mobile, show only icon */
+  @media (max-width: 575.98px) {
+    .btn-search span {
+      display: none;
+    }
+  }
 </style>
 
-
+<!-- Responsive Navbar: Collapses to hamburger menu on tablets and below (md breakpoint) -->
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+    <!-- Brand/Logo -->
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+    </a>
+
+    <!-- Hamburger Menu Toggle Button (visible on small screens) -->
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Collapsible navbar content -->
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <!-- Left side: Explore link -->
       <div class="navbar-nav">
         <a class="nav-link" href="/listings">Explore</a>
       </div>
-      <div class="navbar-nav ms-auto">
-        <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+
+      <!-- Center: Search form (responsive - stacks on mobile) -->
+      <div class="navbar-nav mx-auto order-md-0 order-3 mt-2 mt-md-0 w-100 w-md-auto">
+        <form class="d-flex w-100" role="search">
+          <input 
+            class="form-control form-control-sm me-2" 
+            type="search" 
+            placeholder="Search listings" 
+            aria-label="Search"
+          />
+          <!-- Search button: Shows only icon on mobile for space efficiency -->
+          <button class="btn btn-search flex-shrink-0" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span class="d-none d-sm-inline">Search</span>
+          </button>
         </form>
       </div>
+
+      <!-- Right side: Action buttons (responsive - stacks on mobile) -->
       <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new">AirBnb Your Home</a>
-        <% if(!currUser){ %>
-          <a class="nav-link active" aria-current="page" href="/signup"><b>Sign-Up</b></a>
-          <a class="nav-link" href="/login"><b>Log-In</b></a>
+        <a class="nav-link nav-link-sm" href="/listings/new">Your Home</a>
+        
+        <% if(!currUser) { %>
+          <!-- Authentication links (hidden on very small screens to save space) -->
+          <a class="nav-link nav-link-sm" href="/signup"><b>Sign Up</b></a>
+          <a class="nav-link nav-link-sm" href="/login"><b>Log In</b></a>
         <% } %>
+        
         <% if(currUser) { %>
-          <a class="nav-link" href="/logout">Log-Out</a>
+          <!-- Logout link -->
+          <a class="nav-link nav-link-sm" href="/logout">Log Out</a>
         <% } %>
       </div>
     </div>

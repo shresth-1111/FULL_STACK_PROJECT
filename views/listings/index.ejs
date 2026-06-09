@@ -1,127 +1,272 @@
 <% layout("/layouts/boilerplate") %>
-    <style>
+<style>
+  /* ==================== FILTERS SECTION ==================== */
+  
+  #filters {
+    display: flex;
+    flex-wrap: wrap; /* Allows filters to wrap on smaller screens */
+    justify-content: center; /* Center filters on mobile */
+    align-items: center;
+    gap: 1rem; /* Bootstrap spacing utility equivalent */
+    padding: 1rem 0; /* Vertical padding for breathing room */
+  }
 
-        #filters{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            align-items: center;
-        }
+  /* Individual filter styling */
+  .filter {
+    text-align: center;
+    padding: 0.5rem 1rem; /* Responsive padding instead of fixed margins */
+    opacity: 0.7;
+    transition: opacity 0.3s ease; /* Smooth opacity transition on hover */
+    cursor: pointer;
+  }
 
-        .filter{
-            text-align: center;
-            margin-right: 2rem;
-            margin-top: 2rem;
-            opacity:0.7;
-        }
+  .filter:hover {
+    opacity: 1;
+  }
 
-        .filter:hover{
-            opacity:1;
-        }
+  /* Make filter icons larger and responsive */
+  .filter i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
 
-        .tax-info{
-            display:none;
-        }
+  .filter p {
+    margin: 0.5rem 0 0 0;
+    font-size: 0.875rem;
+  }
 
-        .tax-toggle{
-            display: flex;
-            border:1px solid black;
-            border-radius: 1rem;
-            justify-content: center;
-            align-items: center;
-            padding:0.6rem;
-        }
+  /* ==================== TAX TOGGLE STYLING ==================== */
+  
+  .tax-info {
+    display: none; /* Hidden by default, toggled via JavaScript */
+  }
 
-    </style>
+  .tax-toggle {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background-color: #f8f9fa;
+    margin-top: 1rem;
+  }
 
-    <div id="filters">
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-fire"></i>
-            </div>
-            <p>Trending</p>
-        </div>
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-bed"></i>
-            </div>
-            <p>Rooms</p>
-        </div>
-        <div class="filter">
-            <div>
-               <i class="fa-solid fa-city"></i>
-            </div>
-            <p>Iconic Cities</p>
-        </div>
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-mountain"></i>
-            </div>
-            <p>Mountains</p>
-        </div>
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-tents"></i>
-            </div>
-            <p>Campaings</p>
-        </div>
-        <div class="filter">
-            <div>
-               <i class="fa-solid fa-person-swimming"></i>
-            </div>
-            <p>Swimming Pool</p>
-        </div>
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-cow"></i>
-            </div>
-            <p>Farm</p>
-        </div>
-        <div class="filter">
-            <div>
-                <i class="fa-solid fa-sailboat"></i>
-            </div>
-            <p>Boats</p>
-        </div>
-        <div class="filter">
-            <div>
-               <i class="fa-solid fa-igloo"></i>
-            </div>
-            <p>Dome</p>
-        </div>
+  /* Adjust tax toggle layout on mobile */
+  @media (max-width: 575.98px) {
+    .tax-toggle {
+      width: 100%; /* Full width on mobile */
+      order: -1; /* Move to top on mobile */
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
 
-        <div class="tax-toggle">
-            <div class="form-check form-check-reverse form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-                <label class="form-check-label" for="switchCheckDefault">Display Total After Taxes</label>
-            </div>
-        </div>
+    .tax-toggle label {
+      font-size: 0.875rem; /* Smaller text on mobile */
+    }
+  }
 
+  /* ==================== LISTING CARDS ==================== */
+  
+  .listing-link {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .listing-link:hover {
+    transform: translateY(-5px); /* Subtle lift effect on hover */
+  }
+
+  .listing-card {
+    border: none;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .listing-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Responsive card image height */
+  .listing-card img {
+    height: 250px;
+    object-fit: cover; /* Ensure images don't distort */
+  }
+
+  @media (max-width: 575.98px) {
+    .listing-card img {
+      height: 200px; /* Smaller height on mobile */
+    }
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .card-text {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+</style>
+
+<!-- ==================== FILTERS SECTION ==================== -->
+<!-- Responsive filter bar: wraps on mobile, centers items -->
+<div id="filters" class="container-fluid px-2 px-md-0">
+  <!-- Trending Filter -->
+  <div class="filter">
+    <div>
+      <i class="fa-solid fa-fire"></i>
     </div>
+    <p>Trending</p>
+  </div>
 
-
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
-         <%for(let listing of allListings){%>
-            <a href="/listings/<%=listing.id%>" class="listing-link">
-                <div class="card listing-card">
-                    <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_image" style="height: 20rem;">
-                    <div class="card-img-overlay">
-                        <h5 class="card-title"><%=listing.title%></h5>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text"><b><%=listing.title%></b><br/>
-                            <%if (listing.price != null) { %>
-                                ₹ <%= listing.price.toLocaleString("en-IN") %>/night
-                                <i class="tax-info">&nbsp; &nbsp; +18%GST</i>
-                            <% } else { %>
-                                Price not available
-                            <% } %><br/>
-                        </p>
-                    </div>
-                </div>
-            </a>
-        <%}%>
+  <!-- Rooms Filter -->
+  <div class="filter">
+    <div>
+      <i class="fa-solid fa-bed"></i>
     </div>
+    <p>Rooms</p>
+  </div>
+
+  <!-- Iconic Cities Filter -->
+  <div class="filter">
+    <div>
+      <i class="fa-solid fa-city"></i>
+    </div>
+    <p>Iconic Cities</p>
+  </div>
+
+  <!-- Mountains Filter -->
+  <div class="filter">
+    <div>
+      <i class="fa-solid fa-mountain"></i>
+    </div>
+    <p>Mountains</p>
+  </div>
+
+  <!-- Camping Filter -->
+  <div class="filter">
+    <div>
+      <i class="fa-solid fa-tents"></i>
+    </div>
+    <p>Camping</p>
+  </div>
+
+  <!-- Swimming Pool Filter -->
+  <div class="filter">
+    <div>
+      <i class="fa-solid fa-person-swimming"></i>
+    </div>
+    <p>Pool</p>
+  </div>
+
+  <!-- Farm Filter -->
+  <div class="filter">
+    <div>
+      <i class="fa-solid fa-cow"></i>
+    </div>
+    <p>Farm</p>
+  </div>
+
+  <!-- Boats Filter -->
+  <div class="filter">
+    <div>
+      <i class="fa-solid fa-sailboat"></i>
+    </div>
+    <p>Boats</p>
+  </div>
+
+  <!-- Dome Filter -->
+  <div class="filter">
+    <div>
+      <i class="fa-solid fa-igloo"></i>
+    </div>
+    <p>Dome</p>
+  </div>
+
+  <!-- Tax Toggle Switch: Centered and responsive -->
+  <div class="tax-toggle ms-auto me-0 ms-md-auto">
+    <div class="form-check form-check-reverse form-switch">
+      <input 
+        class="form-check-input" 
+        type="checkbox" 
+        role="switch" 
+        id="switchCheckDefault"
+      >
+      <label class="form-check-label" for="switchCheckDefault">
+        Show Tax
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LISTINGS GRID ==================== -->
+<!-- Responsive grid: 1 column on mobile (xs), 2 on tablets (md), 3 on desktops (lg) -->
+<!-- col-12: Full width on mobile | col-md-6: Half width on tablets | col-lg-4: Third width on desktops -->
+<div class="row g-3 g-md-4 mt-2 mt-md-3">
+  <% for(let listing of allListings) { %>
+    <!-- Individual listing card wrapper with responsive columns -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <a href="/listings/<%= listing.id %>" class="listing-link">
+        <div class="card listing-card h-100">
+          <!-- Listing Image with alt text for accessibility -->
+          <img 
+            src="<%= listing.image.url %>" 
+            class="card-img-top" 
+            alt="<%= listing.title %>"
+          >
+          
+          <!-- Image Overlay with Title (appears on hover) -->
+          <div class="card-img-overlay">
+            <h5 class="card-title text-white text-truncate">
+              <%= listing.title %>
+            </h5>
+          </div>
+
+          <!-- Card Body: Price and details -->
+          <div class="card-body">
+            <p class="card-text">
+              <b><%= listing.title %></b><br />
+              <% if (listing.price != null) { %>
+                ₹ <%= listing.price.toLocaleString("en-IN") %>/night
+                <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
+              <% } else { %>
+                Price not available
+              <% } %><br />
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  <% } %>
+</div>
+
+<!-- Comment: allListings = Array of listing objects from the backend -->
+
+<!-- ==================== TAX TOGGLE FUNCTIONALITY ==================== -->
+<script>
+  // Get the tax toggle switch element
+  const taxSwitch = document.getElementById("switchCheckDefault");
+
+  // Add click event listener to toggle tax information display
+  taxSwitch.addEventListener("click", () => {
+    // Get all elements with class 'tax-info' (one per listing card)
+    const taxInfoElements = document.getElementsByClassName("tax-info");
+
+    // Loop through each tax info element and toggle visibility
+    for (let info of taxInfoElements) {
+      if (info.style.display !== "inline") {
+        info.style.display = "inline"; // Show tax info
+      } else {
+        info.style.display = "none"; // Hide tax info
+      }
+    }
+  });
+</script>
 <!-- allListings = > Array of objects  -->
 
 <!-- Writing code for making tax toggle switch functional using add even listeners. -->

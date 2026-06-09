@@ -32,8 +32,8 @@ app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname,"public")));
 app.use(express.urlencoded({extended:true}));
 
-// const url_mongoose="mongodb://127.0.0.1:27017/wanderlust";
-const dburl=process.env.ATLASDB_URL;
+// Use MongoDB Atlas in production, local MongoDB in development
+const dburl = process.env.ATLASDB_URL ;
 
 main()
 .then((res)=>{
