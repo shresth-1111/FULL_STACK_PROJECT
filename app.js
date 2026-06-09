@@ -102,6 +102,65 @@ app.use("/listings",listingRoutes);
 //MIDDLEWARE FOR EXPRESS ROUTER TO READ USER ROUTE
 app.use("/",userRoutes);
 
+//ADMIN SEEDING ROUTE - Check count and seed if needed
+app.get("/admin/seed", async (req, res) => {
+  try {
+    const Listing = require("./models/listing.js");
+    const initData = require("./init/data.js");
+
+    // Check current listing count
+    const count = await Listing.countDocuments({});
+    
+    if (count > 20) {
+      // Already seeded, don't seed again
+      return res.send(`
+        <html>
+          <head><title>Seed Status</title></head>
+          <body style="font-family: Arial; padding: 20px;">
+            <h1 style="color: green;">✓ Database Already Seeded</h1>
+            <p>Current listings in database: <strong>${count}</strong></p>
+            <p>Seeding is not required (>20 listings found)</p>
+            <a href="/">← Back to Home</a>
+          </body>
+        </html>
+      `);
+    }
+
+    // Seed the database with all listings
+    const seedData = initData.data;
+    await Listing.insertMany(seedData);
+
+    res.send(`
+      <html>
+        <head><title>Seed Success</title></head>
+        <body style="font-family: Arial; padding: 20px;">
+          <h1 style="color: green;">✓ Database Seeded Successfully!</h1>
+          <p>Inserted <strong>${seedData.length}</strong> listings</p>
+          <p>Distribution:</p>
+          <ul>
+            <li>Owner 1: 10 listings</li>
+            <li>Owner 2: 10 listings</li>
+            <li>Owner 3: 9 listings</li>
+          </ul>
+          <a href="/">← Back to Home</a>
+        </body>
+      </html>
+    `);
+  } catch (err) {
+    console.error("Seeding error:", err);
+    res.status(500).send(`
+      <html>
+        <head><title>Seed Error</title></head>
+        <body style="font-family: Arial; padding: 20px;">
+          <h1 style="color: red;">❌ Seeding Failed</h1>
+          <p>${err.message}</p>
+          <a href="/">← Back to Home</a>
+        </body>
+      </html>
+    `);
+  }
+});
+
 //ROOT ROUTE
 //Commenting this out so that no one can go to root route it should show page not found option.
 // app.get("/",(req,res)=>{

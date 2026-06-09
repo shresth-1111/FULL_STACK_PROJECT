@@ -14,6 +14,7 @@ const sampleListings = [
       type: "Point",
       coordinates: [-118.6819, 34.0195],
     },
+    owner: "69f80a93338df57e2a31b284",
   },
   {
     title: "Modern Loft in Downtown",
@@ -30,6 +31,7 @@ const sampleListings = [
       type: "Point",
       coordinates: [-74.0060, 40.7128],
     },
+    owner: "69f80a93338df57e2a31b284",
   },
   {
     title: "Mountain Retreat",
@@ -46,6 +48,7 @@ const sampleListings = [
       type: "Point",
       coordinates: [-106.8175, 39.1911],
     },
+    owner: "69f80a93338df57e2a31b284",
   },
   {
     title: "Historic Villa in Tuscany",
@@ -62,6 +65,7 @@ const sampleListings = [
       type: "Point",
       coordinates: [11.2558, 43.7696],
     },
+    owner: "69f80a93338df57e2a31b284",
   },
   {
     title: "Secluded Treehouse Getaway",
@@ -78,6 +82,7 @@ const sampleListings = [
       type: "Point",
       coordinates: [-122.6765, 45.5152],
     },
+    owner: "69f80a93338df57e2a31b284",
   },
   {
     title: "Beachfront Paradise",
@@ -94,6 +99,7 @@ const sampleListings = [
       type: "Point",
       coordinates: [-86.8500, 21.1619],
     },
+    owner: "69f80a93338df57e2a31b284",
   },
   {
     title: "Rustic Cabin by the Lake",
@@ -110,6 +116,7 @@ const sampleListings = [
       type: "Point",
       coordinates: [-120.0324, 39.0968],
     },
+    owner: "69f80a93338df57e2a31b284",
   },
   {
     title: "Luxury Penthouse with City Views",
@@ -126,6 +133,7 @@ const sampleListings = [
       type: "Point",
       coordinates: [-118.2437, 34.0522],
     },
+    owner: "69f80a93338df57e2a31b284",
   },
   {
     title: "Ski-In/Ski-Out Chalet",
@@ -142,6 +150,7 @@ const sampleListings = [
       type: "Point",
       coordinates: [7.2256, 46.0967],
     },
+    owner: "69f80a93338df57e2a31b284",
   },
   {
     title: "Safari Lodge in the Serengeti",
@@ -157,6 +166,7 @@ const sampleListings = [
     geometry: {
       type: "Point",
       coordinates: [34.5899, -2.3254],
+    owner: "69f80a93338df57e2a31b284",
     },
   },
   {
@@ -173,6 +183,7 @@ const sampleListings = [
     geometry: {
       type: "Point",
       coordinates: [4.8945, 52.3676],
+    owner: "69fa5419b536a5c03b809b77",
     },
   },
   {
@@ -189,6 +200,7 @@ const sampleListings = [
     geometry: {
       type: "Point",
       coordinates: [178.0650, -18.7669],
+    owner: "69fa5419b536a5c03b809b77",
     },
   },
   {
@@ -205,6 +217,7 @@ const sampleListings = [
     geometry: {
       type: "Point",
       coordinates: [-1.8313, 51.8330],
+    owner: "69fa5419b536a5c03b809b77",
     },
   },
   {
@@ -221,6 +234,7 @@ const sampleListings = [
     geometry: {
       type: "Point",
       coordinates: [-71.0596, 42.3601],
+    owner: "69fa5419b536a5c03b809b77",
     },
   },
   {
@@ -237,6 +251,7 @@ const sampleListings = [
     geometry: {
       type: "Point",
       coordinates: [115.1889, -8.6705],
+    owner: "69fa5419b536a5c03b809b77",
     },
   },
   {
@@ -253,6 +268,7 @@ const sampleListings = [
     geometry: {
       type: "Point",
       coordinates: [-115.5948, 51.1788],
+    owner: "69fa5419b536a5c03b809b77",
     },
   },
   {
@@ -269,6 +285,7 @@ const sampleListings = [
     geometry: {
       type: "Point",
       coordinates: [-80.1918, 25.7617],
+    owner: "69fa5419b536a5c03b809b77",
     },
   },
   {
@@ -284,6 +301,7 @@ const sampleListings = [
     country: "Thailand",
     geometry: {
       type: "Point",
+    owner: "69fa5419b536a5c03b809b77",
       coordinates: [98.3923, 8.1100],
     },
   },
@@ -300,6 +318,7 @@ const sampleListings = [
     country: "United Kingdom",
     geometry: {
       type: "Point",
+    owner: "69fa5419b536a5c03b809b77",
       coordinates: [-4.4185, 57.2865],
     },
   },
@@ -316,6 +335,7 @@ const sampleListings = [
     country: "United Arab Emirates",
     geometry: {
       type: "Point",
+    owner: "69fa5419b536a5c03b809b77",
       coordinates: [55.2708, 25.2048],
     },
   },
@@ -332,6 +352,7 @@ const sampleListings = [
     country: "United States",
     geometry: {
       type: "Point",
+    owner: "69fb47812ea47e7f793ecde0",
       coordinates: [-109.6333, 47.0527],
     },
   },
@@ -348,6 +369,7 @@ const sampleListings = [
     country: "Greece",
     geometry: {
       type: "Point",
+    owner: "69fb47812ea47e7f793ecde0",
       coordinates: [25.3267, 37.4467],
     },
   },
@@ -364,6 +386,7 @@ const sampleListings = [
     country: "Costa Rica",
     geometry: {
       type: "Point",
+    owner: "69fb47812ea47e7f793ecde0",
       coordinates: [-83.7534, 9.7489],
     },
   },
@@ -380,6 +403,7 @@ const sampleListings = [
     country: "United States",
     geometry: {
       type: "Point",
+    owner: "69fb47812ea47e7f793ecde0",
       coordinates: [-79.9312, 32.7765],
     },
   },
@@ -396,6 +420,7 @@ const sampleListings = [
     country: "Japan",
     geometry: {
       type: "Point",
+    owner: "69fb47812ea47e7f793ecde0",
       coordinates: [139.6917, 35.6895],
     },
   },
@@ -411,6 +436,7 @@ const sampleListings = [
     location: "New Hampshire",
     country: "United States",
     geometry: {
+    owner: "69fb47812ea47e7f793ecde0",
       type: "Point",
       coordinates: [-71.5653, 43.4525],
     },
@@ -427,6 +453,7 @@ const sampleListings = [
     location: "Maldives",
     country: "Maldives",
     geometry: {
+    owner: "69fb47812ea47e7f793ecde0",
       type: "Point",
       coordinates: [73.5081, 4.1694],
     },
@@ -443,6 +470,7 @@ const sampleListings = [
     location: "Aspen",
     country: "United States",
     geometry: {
+    owner: "69fb47812ea47e7f793ecde0",
       type: "Point",
       coordinates: [-106.8175, 39.1911],
     },
@@ -458,6 +486,7 @@ const sampleListings = [
     price: 1800,
     location: "Costa Rica",
     country: "Costa Rica",
+    owner: "69fb47812ea47e7f793ecde0",
     geometry: {
       type: "Point",
       coordinates: [-85.5600, 9.6384],
