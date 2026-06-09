@@ -132,7 +132,7 @@ app.get("/admin/seed", async (req, res) => {
     // Seed the database with all listings
     const seedData = initData.data.map((listing) => ({
       ...listing,
-      owner: mongoose.Types.ObjectId(listing.owner) // Convert string to ObjectId
+      owner: new mongoose.Types.ObjectId(listing.owner) // Convert string to ObjectId
     }));
     
     await Listing.insertMany(seedData);
