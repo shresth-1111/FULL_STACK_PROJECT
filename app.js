@@ -126,8 +126,15 @@ app.get("/admin/seed", async (req, res) => {
       `);
     }
 
+    // Clear old seeded data first (in case they have invalid owner references)
+    await Listing.deleteMany({title: {$in: initData.data.map(d => d.title)}});
+
     // Seed the database with all listings
-    const seedData = initData.data;
+    const seedData = initData.data.map((listing) => ({
+      ...listing,
+      owner: mongoose.Types.ObjectId(listing.owner) // Convert string to ObjectId
+    }));
+    
     await Listing.insertMany(seedData);
 
     res.send(`
